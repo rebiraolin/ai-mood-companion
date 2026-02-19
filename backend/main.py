@@ -8,10 +8,11 @@ Run with:
 """
 
 from fastapi import FastAPI, HTTPException
+from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel, field_validator
 
-from backend.model.emotion_model import predict_emotion
-from backend.model.supportive_responses import get_supportive_response
+from model.emotion_model import predict_emotion
+from model.supportive_responses import get_supportive_response
 
 # ---------------------------------------------------------------------------
 # App setup
@@ -20,6 +21,17 @@ app = FastAPI(
     title="AI Mood Companion API",
     description="Analyses text, predicts an emotion, and returns a supportive response.",
     version="1.0.0",
+)
+
+# ---------------------------------------------------------------------------
+# CORS Setup
+# ---------------------------------------------------------------------------
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # Allow all origins for easier local development
+    allow_credentials=True,
+    allow_methods=["*"],  # Allow all methods
+    allow_headers=["*"],  # Allow all headers
 )
 
 

@@ -50,7 +50,7 @@ AI Mood Companion is a lightweight, privacy-focused tool designed to help users 
    ```
 4. Start the server:
    ```bash
-   uvicorn backend.main:app --reload
+   uvicorn main:app --reload
    ```
    *The API will be available at `http://127.0.0.1:8000`.*
 
